@@ -9,6 +9,7 @@
         advanceKey: 'alt+shift+x',
         resetSpeedKey: 'alt+shift+r',
         preferredSpeedKey: 'alt+shift+g',
+        pauseKey: 'alt+shift+p',
 
         increaseSpeed: 0.5,
         decreaseSpeed: 0.5,
@@ -100,7 +101,21 @@
         log("in mouseTrapReady");
         if (Mousetrap === undefined) return;
         log("found: mouseTrapReady");
+        
+        // Pause audio
+        Mousetrap.bind(config.pauseKey, async (e) => {
+          log("pause audio");
+          e.preventDefault();
+          const player = getCurrentPlayer();
+          if (player === null) {
+            return false;
+          }
 
+          player.pause();
+
+          return false;
+        });
+          
         // Speed Up
         Mousetrap.bind(config.increaseSpeedKey, async (e) => {
           log("speed up");
