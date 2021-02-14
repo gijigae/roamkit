@@ -112,7 +112,7 @@
           }
 
           player.pause();
-
+          player.currentTime = 0;
           return false;
         });
           
